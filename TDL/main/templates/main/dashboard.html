@@ -1,0 +1,47 @@
+{% extends 'main/main.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <table class="table mb-4">
+        <thead>
+            <tr>
+                <th scope="col">Todo item</th>
+                <th scope="col">Status</th>
+                <th scope="col">User</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{item}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.customer.username}}</td>
+            <td>
+                <a href="{% url 'delete' item.id%}"><button type="button">Delete</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="table mb-4">
+        <thead>
+            <tr>
+                <th scope="col">User</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{customer.username}}</td>
+            <td>
+                <a href="{% url 'customer' customer.id %}"><button type="button">View</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}
